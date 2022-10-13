@@ -17,7 +17,12 @@ class PostController extends Controller
     public PostRepositoryInterface $postRepository;
     public CommentRepositoryInterface $commentRepository;
 
-
+    /**
+     * Inject Dependencies
+     *
+     * @param PostRepositoryInterface $postRepository
+     * @param CommentRepositoryInterface $commentRepository
+     */
     public function __construct(PostRepositoryInterface $postRepository, CommentRepositoryInterface $commentRepository)
     {
         $this->postRepository = $postRepository;
@@ -29,14 +34,19 @@ class PostController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
         $posts = $this->postRepository->get();
         return view('web.posts.index',compact('posts'));
     }
 
-
-    public function show($id)
+    /**
+     * Show single post data
+     *
+     * @param $id
+     * @return Application|Factory|View
+     */
+    public function show($id): View|Factory|Application
     {
         $post = $this->postRepository->find($id);
         $comments = $this->commentRepository->paginate($post);
