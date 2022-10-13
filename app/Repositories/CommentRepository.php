@@ -25,9 +25,9 @@ class CommentRepository extends CrudRepository implements CommentRepositoryInter
      * @param Model $model
      * @return mixed
      */
-    public function paginate(Model $model): mixed
+    public function getModelCommentByEagerLoad(Model $model): mixed
     {
-        return $model->comments()->with('replies')->orderBy('created_at', 'DESC')->paginate(10);
+        return $model->comments()->with('replies')->orderBy('created_at', 'DESC')->paginate(config('global.paginate'));
     }
 
     /**

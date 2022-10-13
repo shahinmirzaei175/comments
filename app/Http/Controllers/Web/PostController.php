@@ -48,7 +48,7 @@ class PostController extends Controller
     public function show($id): View|Factory|Application
     {
         $post = $this->postRepository->find($id);
-        $comments = $this->commentRepository->paginate($post);
+        $comments = $this->commentRepository->getModelCommentbyEagerLoad($post);
 
         return view('web.posts.show', compact(['post', 'comments']));
     }
