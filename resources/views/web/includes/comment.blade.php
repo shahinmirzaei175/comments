@@ -2,6 +2,7 @@
     @foreach($comments as $comment)
         <div class="col-md-12">
           {{ $comment->name }}:   {{ $comment->comment }}
+            @if($comment->parent_id == "")
             <form method="post" action="{{ route('comments.reply',[$post->id, $comment->id]) }}">
                 @csrf
                 <div class="form-group col-md-3">
@@ -16,6 +17,7 @@
                     <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" value="Reply" />
                 </div>
             </form>
+            @endif
             <div style="margin: 20px">
                 @include('web.includes.comment', ['comments' => $comment->replies])
             </div>
