@@ -31,7 +31,7 @@ class CommentRepository extends CrudRepository implements CommentRepositoryInter
      */
     public function paginate(Model $model): mixed
     {
-        return $model->comments()->with('replies')->paginate(10);
+        return $model->comments()->with('replies')->orderBy("created_at","DESC")->paginate(10);
     }
 
     /**
