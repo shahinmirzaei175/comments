@@ -20,11 +20,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //Base crud
-        $this->app->bind(CrudRepositoryInterface::class,CrudRepository::class);
+        $this->app->bind(CrudRepositoryInterface::class, CrudRepository::class);
 
         //Entities Repo
-        $this->app->bind(PostRepositoryInterface::class,PostRepository::class);
-        $this->app->bind(CommentRepositoryInterface::class,CommentRepository::class);
+        $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
+        $this->app->bind(CommentRepositoryInterface::class, CommentRepository::class);
     }
 
     /**

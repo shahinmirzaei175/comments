@@ -12,14 +12,14 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        "parent_id",
-        "name",
-        "comment",
+        'parent_id',
+        'name',
+        'comment',
     ];
 
     public function replies(): HasMany
     {
-        return $this->hasMany(Comment::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     public function commentable(): MorphTo

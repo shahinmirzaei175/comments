@@ -3,7 +3,6 @@
 namespace Tests\Feature\Repository;
 
 use App\Models\Comment;
-use App\Models\News;
 use App\Models\Post;
 use App\Repositories\CommentRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,7 +13,7 @@ class CommentRepositoryTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * A test for insert comment
+     * A test for insert comment.
      *
      * @return void
      */
@@ -23,16 +22,16 @@ class CommentRepositoryTest extends TestCase
         $commentRepository = new CommentRepository();
         $post = Post::factory()->create();
         $data = Comment::factory()->state([
-            "commentable_id" => $post->id
+            'commentable_id' => $post->id,
         ])->make()->toArray();
-        $res = $commentRepository->storeModelComment($post,$data);
+        $res = $commentRepository->storeModelComment($post, $data);
         $this->assertTrue($res);
-        $this->assertDatabaseCount('comments',1);
-        $this->assertDatabaseHas('comments',$data);
+        $this->assertDatabaseCount('comments', 1);
+        $this->assertDatabaseHas('comments', $data);
     }
 
     /**
-     * A test for insert reply for comment
+     * A test for insert reply for comment.
      *
      * @return void
      */
@@ -42,12 +41,11 @@ class CommentRepositoryTest extends TestCase
         $post = Post::factory()->create();
         Comment::factory()->create();
         $data = Comment::factory()->state([
-            "commentable_id" => $post->id
+            'commentable_id' => $post->id,
         ])->make()->toArray();
-        $res = $commentRepository->storeModelComment($post,$data);
+        $res = $commentRepository->storeModelComment($post, $data);
         $this->assertTrue($res);
-        $this->assertDatabaseCount('comments',2);
-        $this->assertDatabaseHas('comments',$data);
-
+        $this->assertDatabaseCount('comments', 2);
+        $this->assertDatabaseHas('comments', $data);
     }
 }

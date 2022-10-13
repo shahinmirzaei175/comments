@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CommentFactory extends Factory
 {
     /**
-     * The name of factory model
+     * The name of factory model.
      *
      * @var string
      */
@@ -26,16 +26,17 @@ class CommentFactory extends Factory
     public function definition()
     {
         $commentable = $this->commentable();
+
         return [
-            "name"          => $this->faker->name(),
-            "comment"       => $this->faker->text(200),
+            'name'          => $this->faker->name(),
+            'comment'       => $this->faker->text(200),
             'commentable_id' => $commentable::factory(),
             'commentable_type' => $commentable,
         ];
     }
 
     /**
-     * Set morph model object
+     * Set morph model object.
      *
      * @return mixed
      */

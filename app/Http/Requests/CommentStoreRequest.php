@@ -24,8 +24,8 @@ class CommentStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"      => "required",
-            "comment"   => "required|string|max:200",
+            'name'      => 'required',
+            'comment'   => 'required|string|max:200',
         ];
     }
 }

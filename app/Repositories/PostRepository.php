@@ -2,17 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Models\Brand;
-use App\Models\News;
 use App\Models\Post;
 use App\Repositories\Base\CrudRepository;
 use App\Repositories\Interfaces\PostRepositoryInterface;
-use Illuminate\Support\Facades\DB;
 
 class PostRepository extends CrudRepository implements PostRepositoryInterface
 {
     /**
-     * Set repository model object
+     * Set repository model object.
      *
      * @return Post
      */
@@ -22,12 +19,12 @@ class PostRepository extends CrudRepository implements PostRepositoryInterface
     }
 
     /**
-     * Get list of posts
+     * Get list of posts.
      *
      * @return mixed
      */
     public function get()
     {
-        return $this->model()->orderBy('created_at','DESC')->get();
+        return $this->model()->orderBy('created_at', 'DESC')->get();
     }
 }

@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\Comment::factory()->count(10)->for(
-            Post::factory(), 'commentable'
+            Post::factory(),
+            'commentable'
         )->create();
     }
 }

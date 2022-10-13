@@ -2,19 +2,15 @@
 
 namespace App\Repositories;
 
-use App\Models\Brand;
 use App\Models\Comment;
-use App\Models\News;
 use App\Repositories\Base\CrudRepository;
 use App\Repositories\Interfaces\CommentRepositoryInterface;
-use App\Repositories\Interfaces\PostRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class CommentRepository extends CrudRepository implements CommentRepositoryInterface
 {
     /**
-     * Set repository model object
+     * Set repository model object.
      *
      * @return Comment
      */
@@ -24,18 +20,18 @@ class CommentRepository extends CrudRepository implements CommentRepositoryInter
     }
 
     /**
-     * Get list of comments
+     * Get list of comments.
      *
      * @param Model $model
      * @return mixed
      */
     public function paginate(Model $model): mixed
     {
-        return $model->comments()->with('replies')->orderBy("created_at","DESC")->paginate(10);
+        return $model->comments()->with('replies')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     /**
-     * Store comment
+     * Store comment.
      *
      * @param Model $model
      * @param array $data
@@ -45,6 +41,7 @@ class CommentRepository extends CrudRepository implements CommentRepositoryInter
     {
         $comment = new Comment($data);
         $model->comments()->save($comment);
+
         return true;
     }
 }

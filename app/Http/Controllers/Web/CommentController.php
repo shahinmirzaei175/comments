@@ -7,7 +7,6 @@ use App\Http\Requests\CommentStoreRequest;
 use App\Repositories\Interfaces\CommentRepositoryInterface;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -15,7 +14,7 @@ class CommentController extends Controller
     public PostRepositoryInterface $postRepository;
 
     /**
-     * Inject Dependencies
+     * Inject Dependencies.
      *
      * @param PostRepositoryInterface $postRepository
      * @param CommentRepositoryInterface $commentRepository
@@ -33,11 +32,12 @@ class CommentController extends Controller
      * @param CommentStoreRequest $request
      * @return RedirectResponse
      */
-    public function store($post_id,CommentStoreRequest $request): RedirectResponse
+    public function store($post_id, CommentStoreRequest $request): RedirectResponse
     {
-        $data = $request->only(["comment","name"]);
+        $data = $request->only(['comment', 'name']);
         $post = $this->postRepository->find($post_id);
-        $this->commentRepository->storeModelComment($post,$data);
+        $this->commentRepository->storeModelComment($post, $data);
+
         return redirect()->back();
     }
 
@@ -51,10 +51,11 @@ class CommentController extends Controller
      */
     public function reply($post_id, $comment_id, CommentStoreRequest $request): RedirectResponse
     {
-        $data = $request->only(["comment","name"]);
+        $data = $request->only(['comment', 'name']);
         $data['parent_id'] = $comment_id;
         $post = $this->postRepository->find($post_id);
-        $this->commentRepository->storeModelComment($post,$data);
+        $this->commentRepository->storeModelComment($post, $data);
+
         return redirect()->back();
     }
 }

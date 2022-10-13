@@ -19,8 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("posts", [PostController::class, 'index'])->name('posts.index');
-Route::get("posts/{id}", [PostController::class, 'show'])->name('posts.show');
-Route::post('posts/{post_id}/comments',[CommentController::class,'store'])->name("comments.store");
-Route::post('posts/{post_id}/comments/{comment_id}/reply',[CommentController::class,'reply'])->name("comments.reply");
-
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
+Route::post('posts/{post_id}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('posts/{post_id}/comments/{comment_id}/reply', [CommentController::class, 'reply'])->name('comments.reply');
